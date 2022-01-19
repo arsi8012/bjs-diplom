@@ -35,10 +35,11 @@ money.addMoneyCallback = function (data) {
     ApiConnector.addMoney(data, requеst => {
         if (requеst.success) {
             ProfileWidget.showProfile(requеst.data);
-            money.setMessage(requеst.success, 'Баланс успешно пополнен!')
-        } else {
-            money.setMessage(requеst.error, 'Произошла ошибка пополнения баланса')
-        }
+            money.setMessage(requеst.success, request.error || 'Баланс успешно пополнен!')
+        // } else {
+        //     money.setMessage(requеst.error, 'Произошла ошибка пополнения баланса')
+        // }
+    }
     })
 }
 
@@ -46,10 +47,11 @@ money.conversionMoneyCallback = function (data) {
     ApiConnector.convertMoney(data, requеst => {
         if (requеst.success) {
             ProfileWidget.showProfile(requеst.data);
-            money.setMessage(requеst.success, 'Конвертация успешно выполнена!')
-        } else {
-            money.setMessage(requеst.error, 'Произошла ошибка при конвертации валют')
-        }
+            money.setMessage(requеst.success, request.error || 'Конвертация успешно выполнена!')
+        // } else {
+        //     money.setMessage(requеst.error, 'Произошла ошибка при конвертации валют')
+        // }
+    }
     })
 }
 
@@ -57,10 +59,11 @@ money.sendMoneyCallback = function (data) {
     ApiConnector.transferMoney(data, requеst => {
         if (requеst.success) {
             ProfileWidget.showProfile(requеst.data);
-            money.setMessage(requеst.success, 'Перевод валюты выполнен!')
-        } else {
-            money.setMessage(requеst.error, 'Произошла ошибка при переводе валют')
-        }
+            money.setMessage(requеst.success, request.error || 'Перевод валюты выполнен!')
+        // } else {
+        //     money.setMessage(requеst.error, 'Произошла ошибка при переводе валют')
+        // }
+    }
     })
 }
 
@@ -80,10 +83,11 @@ favourites.addUserCallback = function (data) {
             favourites.clearTable();
             favourites.fillTable(requеst.data);
             money.updateUsersList(requеst.data);
-            favourites.setMessage(requеst.success, 'Добавление пользователя прошло успешно!');
-        } else {
-            favourites.setMessage(requеst.error, 'Ошибка при добавлении пользователя');
-        }
+            favourites.setMessage(requеst.success, request.error || 'Пользователь добавлен в адресную книгу.');
+        // } else {
+        //     favourites.setMessage(requеst.error, 'Ошибка при добавлении пользователя');
+        // }
+    }
     })
 }
 
@@ -93,9 +97,11 @@ favourites.removeUserCallback = function (data) {
             favourites.clearTable();
             favourites.fillTable(requеst.data);
             money.updateUsersList(requеst.data);
-            favourites.setMessage(requеst.success, 'Успешное удаление пользователя!');
-        } else {
-            favourites.setMessage(requеst.error, 'Ошибка при удалении');
+            favourites.setMessage(requеst.success, request.error || 'Пользователь удален из адресной книги');
+        // } else {
+        //     favourites.setMessage(requеst.error, 'Ошибка при удалении');
+        // }
         }
+        
     })
 }
